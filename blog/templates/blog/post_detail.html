@@ -1,0 +1,37 @@
+<!--blog/post_detail.html-->
+{% extends '_base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{{ post}}{% endblock title %}</title>
+</head>
+<body>
+{% block content %}
+<h2>{{ post.title|title }}</h2> <hr>
+<div class="blockquote-footer"> Author : {{ post.author|title }} | Published Date : {{ post.publish }}|
+    Total views: {{ object.total_views }} | Tags:
+    {% for tag in post.tags.all %}
+    <a href="{% url 'blog:post_list_by_tag' tag.slug %}">{{ tag }} </a>
+    {% endfor %}
+    |
+    <a href="{% url 'blog:post_update' post.slug %}">
+        Edit</a> | <a href="{% url 'blog:post_delete' post.slug %}">Delete</a> </div>
+<!--post.publish|date:'Y'-->
+<!--this join is equivalent to ", ".join(posts.tags.all)-->
+<div>
+    <p>{{ post.body|linebreaks }}</p>
+</div>
+<!--similar posts-->
+<h3>Similar posts</h3>
+{% for posts in similar_posts %}
+<ul>
+<li><a href="{{ posts.get_absolute_url }}">{{ posts.title}}</a></li>
+</ul>
+    {% endfor %}
+
+<h3>Comments</h3>
+<hr>
+{% include 'blog/post_comment.html' %}
+{% endblock content %}
+</body>
+</html>

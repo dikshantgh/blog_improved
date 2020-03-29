@@ -1,0 +1,23 @@
+<!--blog/post_list.html-->
+{% extends '_base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Post List| Search{% endblock title %}</title>
+</head>
+<body>
+{% block content %}
+{% include 'blog/search_post.html' %} <a href="{% url 'blog:post_create' %}">Create New Post</a> | Total posts found : {{ page_obj.paginator.count }}
+{% for post in post_list %}
+<div class="card mt-3 hover-shadow" itemscope="" itemtype="">
+    <div class="card-body">
+        <h5> <a href="{{ post.get_absolute_url }}">{{ post.title|title }}</a> </h5>
+        <p class="font-italic text-secondary"> <small>Author: {{ post.author }}</small></p>
+        <p>{{ post.body|truncatewords:20 }}</p>
+    </div>
+</div>
+{% endfor %}
+{%	include	"blog/pagination.html" %}
+{% endblock content %}
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!--account/logout-->
+{% extends '_base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Logout{% endblock title %}</title>
+</head>
+<body>
+{% block content %}
+    <h3>Logout</h3>
+    <p>Are you sure you want to logout?</p>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Logout">
+    </form>
+{% endblock content %}
+</body>
+</html>

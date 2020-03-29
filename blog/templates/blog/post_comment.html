@@ -1,0 +1,23 @@
+<!--blog/post_comment.html-->
+{% load humanize %}
+{% load crispy_forms_tags %}
+<!--display comment-->
+<p>{{post.comments.all|length}} comment{{post.comments.all|pluralize }}</p>
+{% for comment in post.comments.all %}
+<div class="card mt-2 hover-shadow" itemscope="" itemtype="">
+    <div class="card-body">
+        <small>{{ comment.author|title}} | {{ comment.created }} ({{ comment.created|naturaltime }})</small>
+        <p>{{ comment.body}}</p>
+    </div>
+</div>
+{% endfor %}
+<br>
+<!--add a new comment-->
+<div class="container">
+    <h5>Add New Comment</h5>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input type="submit" value="Comment">
+    </form>
+</div>

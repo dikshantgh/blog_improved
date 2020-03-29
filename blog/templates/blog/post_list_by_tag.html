@@ -1,0 +1,23 @@
+<!--blog/post_list_by_tag.html-->
+{% extends '_base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}List by tag {% endblock title %}</title>
+</head>
+<body>
+{% block content %}
+Found total posts by tag "{{ tag_name }}" : {{ page_obj.paginator.count }}
+{% for post in post_list %}
+<div class="card mt-3 hover-shadow" itemscope="" itemtype="">
+    <div class="card-body">
+        <h5> <a href="{{ post.get_absolute_url }}">{{ post.title|title }}</a> </h5>
+        <p class="font-italic text-secondary"> <small>Author: {{ post.author }}</small></p>
+        <p>{{ post.body|truncatewords:20 }}</p>
+    </div>
+</div>
+{% endfor %}
+{%	include	"blog/pagination.html" %}
+{% endblock content %}
+</body>
+</html>

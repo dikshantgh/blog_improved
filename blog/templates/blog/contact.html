@@ -1,0 +1,29 @@
+<!--blog/contact.htnl-->
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Contact{% endblock title %}</title>
+</head>
+<body>
+{% block content %}
+<h3> Contact Details </h3>
+<div class="card mt-3 hover-shadow" itemscope="" itemtype="">
+    <div class="card-body">
+        <h5> Blog World </h5>
+        <p>Location: Oberhausen, Germany </p>
+        <p>Contact Number: +97152556003697 </p>
+        <p>CEO/CTO: Dikshant Ghimire </p>
+    </div>
+</div>
+<h3>Contact Form</h3>
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input type="submit" value="Send">
+</form>
+
+{% endblock content %}
+</body>
+</html>

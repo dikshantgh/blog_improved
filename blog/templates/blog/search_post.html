@@ -1,0 +1,6 @@
+<!--blog/search_post.html-->
+<!--Search-->
+<form class="form-inline mt-2 mt-md-0" action="{% url 'blog:post_list' %}" method="get">
+    <input name="q" class="form-control mr-sm-2" type="text" placeholder="Search using title or author" aria-label="Search">
+    <button type="submit" class="btn btn-success text-white">SEARCH POSTS</button>
+</form>
