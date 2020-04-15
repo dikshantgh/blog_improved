@@ -21,3 +21,12 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('post', 'body',)
+        
+# this is how meta class works        
+# base_fields = {
+# 'name': forms.CharField(max_length=50),
+# 'age': forms.IntegerField(default=0),
+# 'bio': forms.CharField(max_length=100, widgets=Textarea),
+# } 
+
+# ContactForm = type('ContactForm', (forms.BaseForm),{'base_fields':base_fields},)
